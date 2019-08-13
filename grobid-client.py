@@ -163,6 +163,9 @@ class grobid_client(ApiClient):
             return self.process_txt(txt_el, output)
         elif status != 200:
             print('Processing failed with error ' + str(status))
+            print('FileName ' + str(filename))
+            with open(filename,'a') as tei_file:
+                tei_file.write("<biblStruct></biblStruct>\n")
         else:
             # writing TEI file
             try:
